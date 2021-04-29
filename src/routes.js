@@ -1,6 +1,10 @@
 // Creando rutas como objetos, funciones en router.js
 // opcion 1 
-const Rutas = {
+export const Rutas = {
+    home: {
+        ruta: "/",
+        template:`<h1>home</h1>`,
+    },
     EntrarConGoogle: {
         ruta: "/withGoogle",
         template:`<h1>Ingreso con google</h1>`,

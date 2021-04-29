@@ -20,8 +20,6 @@ function MostrarRegistro(){
      vaciar.innerHTML = ""
     const NewForm = document.createElement("form");
 
-    // const Main = document.getElementsByTagName("main")
-    // const Formulario = 
     
     NewForm.innerHTML= `
     
