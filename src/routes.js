@@ -3,7 +3,20 @@
 export const Rutas = {
     home: {
         ruta: "/",
-        template:`<h1>home</h1>`,
+        template:`
+        
+        <h1>FoodFans</h1>
+
+        <span>Social Network</span>
+        <p>Postea tus mejores platos, comparte tu experiencia y enseñala a tus amigos.</p>
+        
+        <section id="Botones" class="Bienvenida">
+        <button type="button" id="signUpGoogle" class="btn" > <img src="src/imagenes/google.png">SIGN UP WITH GOOGLE</button>
+        <button type="button" id="signUp"       class="btn" >SIGN UP</button>
+        <button type="button" id="login"        class="btn" > LOGIN</button>
+      </section>
+    `,
+
     },
     EntrarConGoogle: {
         ruta: "/withGoogle",
@@ -11,7 +24,15 @@ export const Rutas = {
     },
     Registro: {
         ruta: "/register",
-        template:`<h1>Registro</h1>`,
+        template:`
+        <h1> Created account </h1>
+        <form>
+        <input type="text" class="input" placeholder="User name"> 
+        <input type="email" class="input" placeholder="email"> 
+        <input type="password" class="input" placeholder="password"> 
+        
+        <button type="submit" id="Register" class="btn" > <a href="#Register"> REGISTER</a></button>
+        </form>`,
     },  
      Ingreso: {
         ruta: "/login",
@@ -25,21 +46,3 @@ export const Rutas = {
 
 
 
-
-// Creando rutas como arrays, funciones ejecutables en router.js 
-// opcion 2 
-
-// const Rutas = [ 
-//     {
-//         ruta: "/withGoogle",
-//         template:`<h1>Ingreso con google</h1>`,
-//     },
-//      {
-//         ruta: "/register",
-//         template:`<h1>Registro</h1>`,
-//     },  
-//      {
-//         ruta: "/login",
-//         template:`<h1>Ingreso</h1>`,
-//     },
-//     ]
