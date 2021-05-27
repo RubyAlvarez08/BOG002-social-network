@@ -1,4 +1,4 @@
-import {LoginUsuario} from '../Firebase/firebaseAuth.js';
+/* import {LoginUsuario} from '../Firebase/firebaseAuth.js'; */
 
 export function FormularioDeIngreso(){
 
