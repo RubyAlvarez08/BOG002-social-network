@@ -1,5 +1,5 @@
 // creacion de formulario sign up
-/* import { autenticacionUsuario } from '../Firebase/firebaseAuth.js'; */
+import {Registro} from '../../Firebase/firebaseAuth.js';
 
 export function FormularioDeRegistro(){
    let html= `
@@ -90,10 +90,10 @@ formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 	if( campos.nombre && campos.password && campos.correo ){
     
-	 const Email = document.getElementById("EmailUser").value;
-	 const Password= document.getElementById("PasswordUser").value;
-    const Name = document.getElementById("NameUser").value;
-    autenticacionUsuario(Email, Password, Name)
+	 const email = document.getElementById("EmailUser").value;
+	 const password= document.getElementById("PasswordUser").value;
+    const name = document.getElementById("NameUser").value;
+    Registro(email, password,name);
 	} 
    else {
 		alert("completa correctamente todos los campos") ;

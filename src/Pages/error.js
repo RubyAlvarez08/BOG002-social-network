@@ -7,7 +7,7 @@ export function modalError(firebaseError) {
   
 //       <p> Usuario registrado</p>
 //       <button type="button" id="loginPpal" class="btn" value="login"> <a href="#/login">LOGIN</a></button>
-//       <button type="button" class="btn" id="close">                   <a href="#/signUp">VOLVER</a></button>
+//       <button type="button" class="btn" id="close"><a href="#/signUp">VOLVER</a></button>
   
 //     </div>
   

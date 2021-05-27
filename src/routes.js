@@ -1,6 +1,7 @@
 
-import {home, IngresarConGoogle} from './Pages/Home.js';
-//import {FormularioDeRegistro,  Datos_de_registro} from './Pages/SingUp.js';
+import {home} from './Pages/Home.js';
+import { Datos_de_registro, FormularioDeRegistro } from './Pages/SingUp.js';
+
 //import {FormularioDeIngreso,DatosDeLogin} from './Pages/Login.js';
  //import {SoloUsuarios} from './Firebase/firebaseAuth.js'; 
 /* import { inicio, CerrarSesion, ParaPublicar} from './Pages/inicio.js';
@@ -26,9 +27,13 @@ export const  router = (route) => {
     switch(route){
         case '':
         content.innerHTML= home()
+                
         break;
-        case '#/withGoogle':
-            IngresarConGoogle();
+        case '#/signUp':
+            content.innerHTML =
+            FormularioDeRegistro()
+            Datos_de_registro()
+        break;   
 
         default: 
         console.log('error')
