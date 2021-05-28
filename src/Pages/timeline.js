@@ -2,46 +2,34 @@
 import{ SavePublicaciones} from '../Firebase/firestore.js' */
 
 
-export function inicio(){
+export function timeline(){
 
     let html= `
     
-	<div id="encabezado">
-		<div id="logo"> FoodFans </div>
-		<div id="configuracion"><img src="./imagenes/Setting.svg">
-
-		</div> 
-	</div>
-
-	<nav>
-		<ul>
-			<li><a id="inicio" href="#/release"><img src="./imagenes/Home.svg"></a>Inicio </li>
-			<li><a id="perfil" href="#/profile"><img src="./imagenes/Profile.svg"></a>Perfil</li>
-			<li><a id="buscar" href="#/search"><img src="./imagenes/Search.svg"></a>Buscar</li>
-		</ul>
-	</nav>
-
-	<div id="menu">
-		<span class= "setting">Cambiar nombre</span>
-		<span class= "setting" id="cerrar-sesion">Cerra sesion</span>
-	</div>
-	<form class="area-publicar">
-	<img id="foto-usuario" src="./imagenes/usuario.png">
-		<div class ="insertar-publicacion">
-			<textarea type="text" maxlength="250" minlength="2"  required class="publicar" placeholder=" ¿Que tienes para contar?">  </textarea>
-				<span class="area-lugar">
-					<img src="./imagenes/Location-1.svg">
-					<input id="input-lugar" type="text" maxlength="250" minlength="2"  required placeholder="¡Estoy aqui!">
-				</span>
+	<div class="container">
+	 <header>
+	   <div class="menu">
+		  <div class="logo"> 
+		  <h1>FoodFans<h1>
 		</div>
-	<div>
-		<button type="submit" class="btn" id="publicar-btn"> Publicar </button> 
-	</div>
-	</form>
-
-	<div id="publicaciones">	
-	</div>
-`  
+		<div id="configuracion"><img src="./imagenes/Setting.svg">
+		  <div class="enlaces" id="enlaces">
+		    <h3 class= "setting" id="cerrar-sesion"><a href="#">Cerrar sesion</a></h3>
+		  </div>
+		</div> 
+	 </header>
+       <button type="submit" class="btn btn-publicar" id="abrir-modal"> Publicar </button> 
+		<div class="all-post" id="all-post"></div>
+	 <footer>
+		<ul>
+		<li><a href="#/timeline"><img src="./imagenes/Home.svg"></a>Inicio </li>
+		<li><a href="#/profile"><img src="./imagenes/Profile.svg"></a>Perfil</li>
+		<li><a href="#/search"><img src="./imagenes/Search.svg"></a>Buscar </li>
+       </ul>
+	  </footer>
+	  
+    </div>
+`
     return html;
 }
 
@@ -50,31 +38,23 @@ export function CerrarSesion()	{
 		BotonCerrar.addEventListener('click', Salir);
 }
 
-	//  obtener valores
-export async function ParaPublicar(){
 
+//  obtener valores
+export function FormularioPublicacion() {
+	const botonAbrirModal = document.getElementById('abrir-modal');
+	const modalPublicacion = document.getElementById('post_modal');
+	const cerrarModal = document.getElementById('publicar-btn');
+	const cerrarSinPublicar = document.getElementById('cerrar');
+	botonAbrirModal.addEventListener('click', () => {
+		modalPublicacion.classList.add('show');
+	})
+	cerrarModal.addEventListener('click', () => {
+		modalPublicacion.classList.remove('show');
+	})
+    cerrarSinPublicar.addEventListener('click', () => {
+		modalPublicacion.classList.remove('show');
+	})
 
-	const BtnPublicar = document.getElementById("publicar-btn")
-		  await BtnPublicar.addEventListener("click", (e) => {
-			e.preventDefault();
-			let user   		= firebase.auth().currentUser; //esta variable se usara en el documento firebaseauth
-			const nombre 		= user.displayName 
-			const descripcion   = document.querySelector(".publicar").value;
-			const lugar 		= document.querySelector("#input-lugar").value;
-			const objectoAccion =  new Date();
-			console.log(objectoAccion);
-
-
-			 const publicaciones= {
-   					nombre,
-					descripcion,
-					foto: false,
-					fecha: Date(objectoAccion.toString()).replace(/ \w+-\d+ \(.*\)$/,""),
-   					lugar,
-			}
-			SavePublicaciones(publicaciones);
-			document.querySelector(".area-publicar").reset();
-			})
 	
 }
 

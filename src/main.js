@@ -7,7 +7,7 @@ inicializeFirebase();
 
 
 
-window.addEventListener('load',() => {
+window.addEventListener('DOMContentLoaded',() => {
   router(window.location.hash);
 }); 
 

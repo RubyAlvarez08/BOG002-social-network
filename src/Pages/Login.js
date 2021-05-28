@@ -1,4 +1,4 @@
-/* import {LoginUsuario} from '../Firebase/firebaseAuth.js'; */
+
 
 export function FormularioDeIngreso(){
 
@@ -8,7 +8,6 @@ export function FormularioDeIngreso(){
       <form id="Form-login"> 
 
         <h1 id="titulo-login"> Login </h1>
-        <div id="usuario"> <img src="./imagenes/usuario.png"> </div>
 
         <div class="input" id="Email">
          <input type="email" name="correo" placeholder="email" required id="EmailUser"> 
@@ -28,6 +27,7 @@ export function FormularioDeIngreso(){
   return html;
 }
 
+/* 
  export function DatosDeLogin(){
   const formularioLogin = document.getElementById('Form-login');
   const inputs = document.querySelectorAll('.input');
@@ -89,14 +89,13 @@ export function FormularioDeIngreso(){
 	   e.preventDefault();
      
 	if( campos.password && campos.correo ){
-
     const Email = document.getElementById("EmailUser").value;
 	  const Password= document.getElementById("PasswordUser").value;
-    // console.log("enviado correo  " + Email + " contraseña " + Password)
-      LoginUsuario(Email, Password)
+
+      Ingreso(Email, Password)
    } else {
 		console.log("no se envia");
 	}
   });
 
-}
+} */

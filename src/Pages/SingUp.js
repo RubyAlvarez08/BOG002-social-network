@@ -1,12 +1,11 @@
 // creacion de formulario sign up
-import {Registro} from '../../Firebase/firebaseAuth.js';
 
 export function FormularioDeRegistro(){
    let html= `
    <div class="fondo">
      
-       <!--<fieldset> -->
-      <form id="formulario">
+      
+      <form id="formulario-sign-up">
          <h1 id="titulo-registro"> Created account </h1>
          <div id="Name" class="input">
          <input type="text" id="NameUser"  name="nombre" placeholder="User name" maxlength="10"   title="Maximo 16 caracteres" required >
@@ -22,14 +21,16 @@ export function FormularioDeRegistro(){
          </div>
          <span id"completar"></span>
          <button type="submit" id="Register" class="btn" > REGISTER <a href="#Register"> </a> </button>
-   <!--</fieldset> -->
+   
    </form>
    </div>`;
    
     return html;
     
 }     
-export function Datos_de_registro(){
+
+
+/* export function DatosDeRegistro(){
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('.input');
 
@@ -44,7 +45,7 @@ const campos = {
 	correo: false,
 	password: false
 }
- const validarFormulario = (e) => {
+  const  validarFormulario = (e) => {
 	switch (e.target.name) {
 
 		case "nombre":
@@ -93,7 +94,7 @@ formulario.addEventListener('submit', (e) => {
 	 const email = document.getElementById("EmailUser").value;
 	 const password= document.getElementById("PasswordUser").value;
     const name = document.getElementById("NameUser").value;
-    Registro(email, password,name);
+    Registro(email, password, name);
 	} 
    else {
 		alert("completa correctamente todos los campos") ;
@@ -111,5 +112,5 @@ const mostrarPassword = document.getElementById("PasswordUser");
       contrasena.setAttribute("type", "password");
 });
 
- 
-}
+} */
+
