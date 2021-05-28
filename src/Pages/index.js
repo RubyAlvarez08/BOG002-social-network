@@ -1,4 +1,4 @@
-import {modalError,modalErrorLogin } from './error.js';
+
 
 /* *********************Crear cuenta********************* */
 export async function RegistroUsuario(){
@@ -18,7 +18,7 @@ export async function RegistroUsuario(){
        formularioSignUp.reset();
     })
        .catch((error) => {
-       modalError(error)
+        modalErrorSignUp(error)
    });
  
     })
@@ -77,4 +77,32 @@ export function CerrarSesion(){
       }).catch((error) => {
         // An error happened.
       });
+}
+
+/* *******POPUP  Error Loguin ********* */
+ function modalErrorLogin(error) { 
+    
+    const login_modal = document.getElementById('login_modal');
+    const close = document.getElementById('close-login');
+    
+    if ( error.code=="auth/user-not-found" || "auth/wrong-password") {
+        login_modal.classList.add('show'); 
+    }
+    
+    close.addEventListener('click', () => {
+      login_modal.classList.remove('show');
+    });
+}
+/* *******POPUP  Error Registro ********* */
+function modalErrorSignUp(error){
+    const container_modal = document.getElementById('container_modal');
+const close = document.getElementById('close');
+
+if ( error.code=="auth/email-already-in-use") {
+    container_modal.classList.add('show'); 
+}
+
+close.addEventListener('click', () => {
+    container_modal.classList.remove('show');
+});
 }
