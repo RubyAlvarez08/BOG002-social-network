@@ -33,28 +33,8 @@ export function timeline(){
     return html;
 }
 
-export function CerrarSesion()	{
-	let BotonCerrar = document.getElementById('cerrar-sesion');
-		BotonCerrar.addEventListener('click', Salir);
-}
 
 
-//  obtener valores
-export function FormularioPublicacion() {
-	const botonAbrirModal = document.getElementById('abrir-modal');
-	const modalPublicacion = document.getElementById('post_modal');
-	const cerrarModal = document.getElementById('publicar-btn');
-	const cerrarSinPublicar = document.getElementById('cerrar');
-	botonAbrirModal.addEventListener('click', () => {
-		modalPublicacion.classList.add('show');
-	})
-	cerrarModal.addEventListener('click', () => {
-		modalPublicacion.classList.remove('show');
-	})
-    cerrarSinPublicar.addEventListener('click', () => {
-		modalPublicacion.classList.remove('show');
-	})
 
-	
-}
+
 

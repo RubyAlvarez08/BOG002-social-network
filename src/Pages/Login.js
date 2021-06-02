@@ -3,23 +3,20 @@
 export function FormularioDeIngreso(){
 
   const html= `
-      <div class='fondo'>
+      <div class='fondo contenedor'>
   
       <form id="Form-login"> 
-
-        <h1 id="titulo-login"> Login </h1>
-
+          <button type="button" id="google"><img src="imagenes/google.png"></button>
         <div class="input" id="Email">
-         <input type="email" name="correo" placeholder="email" required id="EmailUser"> 
-         <img src="" id="CampoVacioEmail" class="error">
+          <input type="email" name="correo" placeholder="email" required id="EmailUser"> 
+          <img src="" id="CampoVacioEmail" class="error">
         </div>
 
-      <div class="input" id="Password">
-      <input type="password"  name="password" placeholder ="password" required id="PasswordUser">
-      <img src="" id="CampoVacioPassword" class="error"> 
-      </div>
-      
-      <button type="submit" id="login" class="btn" > LOGIN <a href="#/Register"> </a> </button>
+        <div class="input" id="Password">
+          <input type="password"  name="password" placeholder ="password" required id="PasswordUser">
+          <img src="" id="CampoVacioPassword" class="error"> 
+        </div>
+          <button type="submit" id="login" class="btn" > LOGIN <a href="#/Register"> </a> </button>
       <form> 
       <div>`
       

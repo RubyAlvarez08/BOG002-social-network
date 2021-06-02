@@ -1,7 +1,8 @@
-
+import { crearUsuario, Login, withGoogle } from "../../Firebase/firebaseAuth.js";
+const googleButton = document.getElementById('google');
 
 /* *********************Crear cuenta********************* */
-export async function RegistroUsuario(){
+export function RegistroUsuario(){
     const formularioSignUp = document.getElementById('formulario-sign-up');
     formularioSignUp.addEventListener('submit', (e)=>{
        e.preventDefault();
@@ -9,17 +10,18 @@ export async function RegistroUsuario(){
        const email = document.getElementById('EmailUser').value;
        const password = document.getElementById('PasswordUser').value;
        
-       //conectando con firebase
-       firebase.auth().createUserWithEmailAndPassword(email,password)
-      .then((cred) => {
+       //conectando con firebase... Consumiedo la promesa
+       crearUsuario(email,password)
+       .then((cred) => {
         
-       console.log(cred);
-       window.location.hash = '#/timeline'
-       formularioSignUp.reset();
-    })
-       .catch((error) => {
-        modalErrorSignUp(error)
-   });
+        console.log(cred);
+        window.location.hash = '#/timeline'
+        
+     })
+        .catch((error) => {
+         modalErrorSignUp(error)
+    });
+     
  
     })
  }
@@ -32,52 +34,70 @@ export async function RegistroUsuario(){
          const email = document.getElementById('EmailUser').value;
          const password = document.getElementById('PasswordUser').value;
          
-         firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+         //conectando firebase
+         Login(email,password)
+         .then((userCredential) => {
             // Signed in
             var user = userCredential.user;
             window.location.hash = '#/timeline'
-            formularioLogin.reset();
-            // ...
+          
         })
         .catch((error) => {
-            var errorCode = error.code;
             modalErrorLogin(error);
         });
       })    
   }
 
  /* ********************Ingresar con Google***************** */
-export function withGoogle(){
-    var provider = new firebase.auth.GoogleAuthProvider();
-    
-    firebase.auth().signInWithPopup(provider)
-  .then((result) => {
-  
-    window.location.hash ='#/release';
-  
-    var credential = result.credential;
-    var user = result.user;
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-  });
-}
+/*  googleButton.addEventListener('click',withGoogle); */
 
-export function CerrarSesion(){
-    firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-      }).catch((error) => {
-        // An error happened.
-      });
-}
+export function Google(){
+
+  const BotonGoogle = document.getElementById('google');
+  BotonGoogle.addEventListener('click',loginGoogle);
+
+  function loginGoogle(){
+    let provider = new firebase.auth.GoogleAuthProvider();
+ 
+     withGoogle(provider)
+    .then((result) => {
+      let credential = result.credential;
+      let user = result.user;
+      console.log(user)
+    
+      window.location.hash ='#/timeline';
+    
+      
+    }).catch((error) => {
+       console.log(error)
+    });
+  
+  }
+ 
+  
+} 
+     
+export function CerrarSesion()	{
+	let BotonCerrar = document.getElementById('cerrar-sesion');
+		BotonCerrar.addEventListener('click', Salir);
+
+    function Salir(){
+      firebase.auth().signOut()
+      .then(() => {
+          confirm('Desea salir?')
+          if(confirm == 'Aceptar'){
+            window.location.hash = ''
+          }else{
+            window.location.hash = '#/timeline';
+          }
+        }).catch(() => {
+          
+        });
+  }
+}   
+
+
+
 
 /* *******POPUP  Error Loguin ********* */
  function modalErrorLogin(error) { 
@@ -105,4 +125,23 @@ if ( error.code=="auth/email-already-in-use") {
 close.addEventListener('click', () => {
     container_modal.classList.remove('show');
 });
+}
+
+//  obtener valores
+export function FormularioPublicacion() {
+	const botonAbrirModal = document.getElementById('abrir-modal');
+	const modalPublicacion = document.getElementById('post_modal');
+	const cerrarModal = document.getElementById('publicar-btn');
+	const cerrarSinPublicar = document.getElementById('cerrar');
+	botonAbrirModal.addEventListener('click', () => {
+		modalPublicacion.classList.add('show');
+	})
+	cerrarModal.addEventListener('click', () => {
+		modalPublicacion.classList.remove('show');
+	})
+    cerrarSinPublicar.addEventListener('click', () => {
+		modalPublicacion.classList.remove('show');
+	})
+
+	
 }

@@ -39,23 +39,7 @@ export function perfil(){
 
 
   
-   export function name (){
-	//    obteniendo valores
-	let Nombre_usuario = document.getElementById("Nombre-de-usuario");
-	let Nombre_completo = document.getElementById("Nombre-completo");
-	let Descripcion = document.getElementsByClassName("descripcion");
-
-	let  user = firebase.auth().currentUser;//esta variable se usara en el documento firebaseauth
-	let NombreRegistro = user.displayName;
-	
-	// pintando valores
-		Nombre_usuario.innerHTML =  NombreRegistro ;
-
-
-
-
-                
-  }
+  
 
 
 

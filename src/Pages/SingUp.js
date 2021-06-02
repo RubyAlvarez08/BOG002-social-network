@@ -1,12 +1,13 @@
 // creacion de formulario sign up
 
 export function FormularioDeRegistro(){
+ 
    let html= `
-   <div class="fondo">
-     
+   <div class="fondo contenedor">
+   
       
       <form id="formulario-sign-up">
-         <h1 id="titulo-registro"> Created account </h1>
+         <button type="button" id="google"><img src="imagenes/google.png"> </button>
          <div id="Name" class="input">
          <input type="text" id="NameUser"  name="nombre" placeholder="User name" maxlength="10"   title="Maximo 16 caracteres" required >
          <img src="" id="CampoVacioName" class="error">
@@ -19,7 +20,7 @@ export function FormularioDeRegistro(){
          <input type="password" id="PasswordUser" name="password" placeholder ="password" required >
          <img src="" id="CampoVacioPassword" class="error">
          </div>
-         <span id"completar"></span>
+         
          <button type="submit" id="Register" class="btn" > REGISTER <a href="#Register"> </a> </button>
    
    </form>

@@ -6,20 +6,21 @@ padding: 0;
 box-sizing: border-box;
 }
 #root{
-  width:100% ; 
+  width:100vw ; 
 }
 
 /* Bienvenida/home */
-main .fondo{
+ .fondo{
 background-size: cover;
 background-attachment: fixed;
 background-repeat: no-repeat;
 background-position: center;
+width: 100vw;
 height: 100vh;
-width: 99.9vw;
-background-image: url("./imagenes/Fondo.jpg");
+background-image: url("./imagenes/fondo.jpg");
+
 }
-main .fondo h1{
+ .fondo h1{
 font-family: 'Dancing Script', cursive;
 color: white;
 font-size: 64px;

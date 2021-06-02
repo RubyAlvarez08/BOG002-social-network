@@ -14,7 +14,6 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  console.log('firebase config')
   firebase.auth();
   firebase.firestore();
   firebase.storage();

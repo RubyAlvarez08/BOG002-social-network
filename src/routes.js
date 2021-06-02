@@ -3,7 +3,7 @@ import {home} from './Pages/Home.js';
 import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
 import { timeline,FormularioPublicacion } from './Pages/timeline.js';
-import { RegistroUsuario, DatosDeLogin} from './Pages/index.js';
+import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion} from './Pages/index.js';
 
  
 
@@ -18,19 +18,23 @@ export const  router = (route) => {
         break;
         case '#/signUp':
             content.innerHTML =
-            FormularioDeRegistro()
-            RegistroUsuario()
+            
+            FormularioDeRegistro();
+            RegistroUsuario();
+            Google();
         break;   
         case '#/login':
             content.innerHTML=
             FormularioDeIngreso();
-            DatosDeLogin()
+            DatosDeLogin();
+            Google();
             
         break;
         case '#/timeline':
         content.innerHTML = 
             timeline();
             FormularioPublicacion();
+            CerrarSesion();
             
 
 
