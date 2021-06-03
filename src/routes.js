@@ -2,7 +2,7 @@
 import {home} from './Pages/Home.js';
 import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
-import { timeline,FormularioPublicacion } from './Pages/timeline.js';
+import { timeline } from './Pages/timeline.js';
 import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion} from './Pages/index.js';
 
  
@@ -33,7 +33,7 @@ export const  router = (route) => {
         case '#/timeline':
         content.innerHTML = 
             timeline();
-            FormularioPublicacion();
+            /* FormularioPublicacion(); */
             CerrarSesion();
             
 

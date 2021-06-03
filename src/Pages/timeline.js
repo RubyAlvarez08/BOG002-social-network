@@ -1,6 +1,3 @@
-/* import {Salir} from '../Firebase/firebaseAuth.js';
-import{ SavePublicaciones} from '../Firebase/firestore.js' */
-
 
 export function timeline(){
 
