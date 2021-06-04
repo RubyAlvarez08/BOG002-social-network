@@ -1,4 +1,4 @@
-import { crearUsuario, Login, UsuarioActual, withGoogle } from "../../Firebase/firebaseAuth.js";
+import { crearUsuario, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
 const googleButton = document.getElementById('google');
 
 /* *********************Crear cuenta********************* */
@@ -38,8 +38,7 @@ export function RegistroUsuario(){
          Login(email,password)
          .then((userCredential) => {
             // Signed in
-          
-            var user = userCredential.user;
+            let user = userCredential.user;
             window.location.hash = '#/timeline';
           
         })
@@ -83,16 +82,14 @@ export function CerrarSesion()	{
 
     function Salir(){
       firebase.auth().signOut()
-      .then(() => {
-          confirm('Desea salir?')
-          if(confirm == 'Aceptar'){
-            window.location.hash = ''
-          }else{
-            window.location.hash = '#/timeline';
-          }
-        }).catch(() => {
+      /* .then(() => {
+        
+        
           
-        });
+      })
+        .catch(() => {
+          
+        }); */
   }
 }   
 

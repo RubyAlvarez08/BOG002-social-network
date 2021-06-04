@@ -14,6 +14,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+ /*  firebase.auth.Auth.Persistence.LOCAL */
   firebase.auth();
   firebase.firestore();
   firebase.storage();
