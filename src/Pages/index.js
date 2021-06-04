@@ -54,28 +54,18 @@ export function RegistroUsuario(){
 export function Google(){
 
   const BotonGoogle = document.getElementById('google');
-  BotonGoogle.addEventListener('click',loginGoogle);
+  BotonGoogle.addEventListener('click',async()=>{
+    try{
+      let provider = new firebase.auth.GoogleAuthProvider();
+      await withGoogle(provider)
+    }catch(error){
+      console.log(error)
+   }
 
-  function loginGoogle(){
-    let provider = new firebase.auth.GoogleAuthProvider();
+  })
+}
  
-     withGoogle(provider)
-    .then((result) => {
-      let credential = result.credential;
-      let user = result.user;
-      console.log(user)
-      
-      window.location.hash ='#/timeline';
-      
-    }).catch((error) => {
-       console.log(error)
-    });
-  
-  }
- 
-  
-} 
-     
+   
 export function CerrarSesion()	{
 	let BotonCerrar = document.getElementById('cerrar-sesion');
 		BotonCerrar.addEventListener('click', Salir);

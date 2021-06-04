@@ -7,7 +7,17 @@ export const crearUsuario = (email, password) => firebase.auth()
 export const Login = (email, password) => firebase.auth()
 .signInWithEmailAndPassword(email, password);
 
-export const withGoogle = (provider) => firebase.auth().signInWithPopup(provider);
+export const withGoogle = (provider) => firebase.auth().signInWithPopup(provider)
+.then((result) => {
+    let credential = result.credential;
+    let user = result.user;
+    console.log(user)
+    
+    window.location.hash ='#/timeline';
+    
+  }).catch((error) => {
+     console.log(error)
+  });
 
 
 export const UsuarioAutenticado = () => firebase.auth().currentUser;
