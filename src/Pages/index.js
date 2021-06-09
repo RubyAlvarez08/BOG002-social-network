@@ -1,28 +1,22 @@
-import { crearUsuario, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
+import { CerrarLaSesion, crearUsuario, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
 const googleButton = document.getElementById('google');
 
 /* *********************Crear cuenta********************* */
 export function RegistroUsuario(){
     const formularioSignUp = document.getElementById('formulario-sign-up');
-    formularioSignUp.addEventListener('submit', (e)=>{
+    formularioSignUp.addEventListener('submit', async(e)=>{
        e.preventDefault();
       // Obtener la info del usuario
+      const name = document.getElementById('NameUser').value;
        const email = document.getElementById('EmailUser').value;
        const password = document.getElementById('PasswordUser').value;
-       
-       //conectando con firebase... Consumiedo la promesa
-       crearUsuario(email,password)
-       .then((cred) => {
-        
-        console.log(cred);
-        window.location.hash = '#/timeline'
-        
-     })
-        .catch((error) => {
-         modalErrorSignUp(error)
-    });
-     
- 
+       try{
+        let result = await crearUsuario(email,password)
+        console.log(result);
+       }catch(error){
+        modalErrorSignUp(error)
+       }   
+    
     })
  }
  /* ********************login de usuario******************** */
@@ -49,15 +43,17 @@ export function RegistroUsuario(){
   }
 
  /* ********************Ingresar con Google***************** */
-/*  googleButton.addEventListener('click',withGoogle); */
-
 export function Google(){
 
   const BotonGoogle = document.getElementById('google');
   BotonGoogle.addEventListener('click',async()=>{
     try{
       let provider = new firebase.auth.GoogleAuthProvider();
-      await withGoogle(provider)
+      let result = await withGoogle(provider);
+      let credential = result.credential;
+      let user = result.user;
+      console.log(user)
+      window.location.hash ='#/timeline';
     }catch(error){
       console.log(error)
    }
@@ -68,26 +64,19 @@ export function Google(){
    
 export function CerrarSesion()	{
 	let BotonCerrar = document.getElementById('cerrar-sesion');
-		BotonCerrar.addEventListener('click', Salir);
+		BotonCerrar.addEventListener('click', async () =>{
+      try{
+        await CerrarLaSesion();
+      }catch{
 
-    function Salir(){
-      firebase.auth().signOut()
-      /* .then(() => {
-        
-        
-          
-      })
-        .catch(() => {
-          
-        }); */
-  }
+      }
+    });
+
+    
 }   
 
-
-
-
 /* *******POPUP  Error Loguin ********* */
- function modalErrorLogin(error) { 
+ export function modalErrorLogin(error) { 
     
     const login_modal = document.getElementById('login_modal');
     const close = document.getElementById('close-login');
@@ -101,7 +90,7 @@ export function CerrarSesion()	{
     });
 }
 /* *******POPUP  Error Registro ********* */
-function modalErrorSignUp(error){
+export function modalErrorSignUp(error){
     const container_modal = document.getElementById('container_modal');
 const close = document.getElementById('close');
 

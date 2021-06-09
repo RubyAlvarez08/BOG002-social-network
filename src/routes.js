@@ -3,7 +3,7 @@ import {home} from './Pages/Home.js';
 import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
 import { timeline } from './Pages/timeline.js';
-import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion} from './Pages/index.js';
+import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion} from './Pages/index.js';
 import { UsuarioAutenticado} from '../Firebase/firebaseAuth.js'
 
  
@@ -37,7 +37,7 @@ export const  router = (route) => {
         if(user){
             content.innerHTML = 
             timeline();
-            /* FormularioPublicacion(); */
+            FormularioPublicacion();
             CerrarSesion();
          }else{
             window.location.hash = '';
@@ -47,7 +47,7 @@ export const  router = (route) => {
 
 
         default: 
-        console.log('error')
+        console.log('error') 
     }
 
 

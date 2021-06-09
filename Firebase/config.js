@@ -16,7 +16,7 @@
   firebase.initializeApp(firebaseConfig);
  /*  firebase.auth.Auth.Persistence.LOCAL */
   firebase.auth();
-  firebase.firestore();
+  let db = firebase.firestore();
   firebase.storage();
   
  }

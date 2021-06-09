@@ -161,7 +161,7 @@ background-color: #8adb94;
 color: black;   
 }
 #login{
-background-color: #3d3d3deb;
+background-color: #e8b770fc;
 color: rgb(255, 255, 255);
 position: relative;
 top: 2em;
@@ -189,7 +189,7 @@ border-radius: 50%;
 border: white solid 10px;
 }
 #loginPpal{
-background-color: #27242479;
+background-color: #e8b770fc;
 color: rgb(255, 255, 255);
 }
 .container_modal {
