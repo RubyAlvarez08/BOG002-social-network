@@ -17,9 +17,8 @@ export function perfil(){
 	 </header>
       <section>
 	  <div id='perfil' class="perfil">
-	  <img src="./imagenes/usuario.png" id="foto-perfil">
+	  <img src="" id="foto-perfil">
 	  <h1 id="Nombre-de-usuario"></h1>
-	  <h2 id="nombre-completo"></h2>
 	  <p class="descripcion"> Aqui va una breve descripcion del usuario</p>
 	  </div>
 	  <div id="publicaciones"></div>
@@ -27,7 +26,7 @@ export function perfil(){
 	
 	  <footer>
 		<ul>
-		<li><a href="#/release"><img src="./imagenes/Home.svg"></a>Inicio </li>
+		<li><a href="#/timeline"><img src="./imagenes/Home.svg"></a>Inicio </li>
 		<li><a href="#/profile"><img src="./imagenes/Profile.svg"></a>Perfil</li>
 		<li><a href="#/search"><img src="./imagenes/Search.svg"></a>Buscar </li>
        </ul>

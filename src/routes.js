@@ -2,8 +2,9 @@
 import {home} from './Pages/Home.js';
 import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
+import {perfil} from './Pages/perfil.js'
 import { timeline } from './Pages/timeline.js';
-import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion} from './Pages/index.js';
+import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion, CrearPost, MostrarPost} from './Pages/index.js';
 import { UsuarioAutenticado} from '../Firebase/firebaseAuth.js'
 
  
@@ -30,19 +31,25 @@ export const  router = (route) => {
             FormularioDeIngreso();
             DatosDeLogin();
             Google();
-            
-            
         break;
         case '#/timeline':
         if(user){
             content.innerHTML = 
             timeline();
             FormularioPublicacion();
+            CrearPost();
+            MostrarPost();
             CerrarSesion();
          }else{
             window.location.hash = '';
          }
-       
+         break;
+         case '#/profile':
+              content.innerHTML =
+                perfil();
+            
+             
+         break;
             
 
 

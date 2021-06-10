@@ -1,6 +1,6 @@
 
-export const crearUsuario = (email, password) => firebase.auth()
-.createUserWithEmailAndPassword(email, password)
+export const crearUsuario = (name,email, password) => firebase.auth()
+.createUserWithEmailAndPassword(name,email, password)
 
 export const Login = (email, password) => firebase.auth()
 .signInWithEmailAndPassword(email, password);
@@ -13,8 +13,8 @@ export const CerrarLaSesion = () =>    firebase.auth().signOut()
 
 export const estadoDeAutenticacion = () => firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-    
-      let uid = user.uid;  
+      let name = user.displayName;
+      console.log(name)
     } else {
       // User is signed out
       // ...

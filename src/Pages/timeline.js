@@ -16,7 +16,7 @@ export function timeline(){
 		</div> 
 	 </header>
        <button type="submit" class="btn btn-publicar" id="abrir-modal"> Publicar </button> 
-		<div class="all-post" id="all-post"></div>
+		<div class="all-post" id="post-container"></div>
 	 <footer>
 		<ul>
 		<li><a href="#/timeline"><img src="./imagenes/Home.svg"></a>Inicio </li>

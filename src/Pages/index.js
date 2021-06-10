@@ -11,7 +11,8 @@ export function RegistroUsuario(){
        const email = document.getElementById('EmailUser').value;
        const password = document.getElementById('PasswordUser').value;
        try{
-        let result = await crearUsuario(email,password)
+        let result = await crearUsuario(name,email,password);
+      
         console.log(result);
        }catch(error){
         modalErrorSignUp(error)
@@ -112,12 +113,43 @@ export function FormularioPublicacion() {
 	botonAbrirModal.addEventListener('click', () => {
 		modalPublicacion.classList.add('show');
 	})
-	cerrarModal.addEventListener('click', () => {
-		modalPublicacion.classList.remove('show');
-	})
     cerrarSinPublicar.addEventListener('click', () => {
 		modalPublicacion.classList.remove('show');
 	})
 
 	
 }
+/* Crear publicaciones */
+
+export function CrearPost(){
+ 
+
+  const FormularioPost = document.getElementById('post');
+  FormularioPost.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const lugar = document.getElementById("lugar").value;
+    const descripcion = document.getElementById("descripcion").value;
+    firebase.firestore().collection("post").add({
+      lugar,
+      descripcion
+  })
+  .then((docRef) => {
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch((error) => {
+    console.error("Error adding document: ", error);
+  });
+    FormularioPost.reset();
+ })
+ /* Traer toda la coleccion y pintarla en la aplicacion */
+
+}
+export const MostrarPost = () =>  firebase.firestore().collection("post").get();
+
+window.addEventListener('DOMContentLoaded',async()=>{
+   const querySnapshot = await MostrarPost();
+   querySnapshot.forEach(doc =>{
+     console.log(doc.data());
+   })
+})
+

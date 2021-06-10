@@ -14,10 +14,10 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
- /*  firebase.auth.Auth.Persistence.LOCAL */
   firebase.auth();
-  let db = firebase.firestore();
+  const db = firebase.firestore();
   firebase.storage();
   
  }
+ 
   
