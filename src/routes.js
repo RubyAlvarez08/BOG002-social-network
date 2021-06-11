@@ -4,7 +4,7 @@ import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
 import {perfil} from './Pages/perfil.js'
 import { timeline } from './Pages/timeline.js';
-import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion, CrearPost, MostrarPost} from './Pages/index.js';
+import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion, CrearPost, mostrarPost} from './Pages/index.js';
 import { UsuarioAutenticado} from '../Firebase/firebaseAuth.js'
 
  
@@ -38,7 +38,7 @@ export const  router = (route) => {
             timeline();
             FormularioPublicacion();
             CrearPost();
-            MostrarPost();
+            mostrarPost();
             CerrarSesion();
          }else{
             window.location.hash = '';

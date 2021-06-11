@@ -1,5 +1,6 @@
 import { CerrarLaSesion, crearUsuario, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
-const googleButton = document.getElementById('google');
+import {GuardarPost, leerPost, upload} from '../../Firebase/firestore.js';
+
 
 /* *********************Crear cuenta********************* */
 export function RegistroUsuario(){
@@ -120,36 +121,45 @@ export function FormularioPublicacion() {
 	
 }
 /* Crear publicaciones */
-
+  
 export function CrearPost(){
- 
-
-  const FormularioPost = document.getElementById('post');
-  FormularioPost.addEventListener('submit',(e)=>{
+    const FormularioPost = document.getElementById('post');
+    FormularioPost.addEventListener('submit',async(e)=>{
     e.preventDefault();
+    const fileInput = document.getElementById('my-file');
+    const file = fileInput.files[0];
     const lugar = document.getElementById("lugar").value;
     const descripcion = document.getElementById("descripcion").value;
-    firebase.firestore().collection("post").add({
-      lugar,
-      descripcion
-  })
-  .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch((error) => {
+   try {
+    let imagen = await upload({
+      file: file,
+    })
+    await GuardarPost(imagen,lugar,descripcion)
+   
+  }
+  catch(error) {
     console.error("Error adding document: ", error);
-  });
+  }
     FormularioPost.reset();
  })
+}
+
+
  /* Traer toda la coleccion y pintarla en la aplicacion */
 
+export function mostrarPost() {
+  const PostContainer = document.getElementById('post-container')
+ 
+    leerPost()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+        PostContainer.innerHTML += `<div>
+          <h3>${doc.data().lugar}</h3>
+          <p>${doc.data().descripcion}</p>
+         </div>`
+        })
+      })
+          
+    
 }
-export const MostrarPost = () =>  firebase.firestore().collection("post").get();
-
-window.addEventListener('DOMContentLoaded',async()=>{
-   const querySnapshot = await MostrarPost();
-   querySnapshot.forEach(doc =>{
-     console.log(doc.data());
-   })
-})
 
