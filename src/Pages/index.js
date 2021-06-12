@@ -1,5 +1,5 @@
-import { CerrarLaSesion, crearUsuario, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
-import {GuardarPost, leerPost, upload} from '../../Firebase/firestore.js';
+import { CerrarLaSesion, crearUsuario, estadoDeAutenticacion, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
+import {GuardarPost, leerPost} from '../../Firebase/firestore.js';
 
 
 /* *********************Crear cuenta********************* */
@@ -126,15 +126,16 @@ export function CrearPost(){
     const FormularioPost = document.getElementById('post');
     FormularioPost.addEventListener('submit',async(e)=>{
     e.preventDefault();
+    
     const fileInput = document.getElementById('my-file');
     const file = fileInput.files[0];
     const lugar = document.getElementById("lugar").value;
     const descripcion = document.getElementById("descripcion").value;
+  
    try {
-    let imagen = await upload({
-      file: file,
-    })
-    await GuardarPost(imagen,lugar,descripcion)
+   
+    await GuardarPost(lugar,descripcion);
+    
    
   }
   catch(error) {
@@ -153,9 +154,23 @@ export function mostrarPost() {
     leerPost()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-        PostContainer.innerHTML += `<div>
-          <h3>${doc.data().lugar}</h3>
-          <p>${doc.data().descripcion}</p>
+        PostContainer.innerHTML += `<div class="containerPost">
+          <h3>NombreUsuario</h3>
+          <i class="fas fa-map-marker-alt">${doc.data().lugar}</i>
+          <img src="./imagenes/foto-prueba.jpg" width="100px"heigth="100px">
+          <div class="icons-post">
+          <i class="far fa-star"></i>
+          <i class="far fa-comment"></i>
+          <i class="far fa-envelope"></i>
+          </div>
+          <div class="post-descripcion">
+        
+          <h4> ${doc.data().descripcion}</h4>
+          </div>
+          <div class="edit-delete">
+          <button><i class="fas fa-trash-alt"></i>Delete</button>
+          <button><i class="fas fa-edit"></i>Editar</button>
+          </div>
          </div>`
         })
       })

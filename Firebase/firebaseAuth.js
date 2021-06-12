@@ -14,7 +14,6 @@ export const CerrarLaSesion = () =>    firebase.auth().signOut()
 export const estadoDeAutenticacion = () => firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       let name = user.displayName;
-      Read()
       console.log(name)
     } else {
       // User is signed out
