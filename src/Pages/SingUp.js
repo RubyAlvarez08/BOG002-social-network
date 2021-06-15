@@ -7,7 +7,7 @@ export function FormularioDeRegistro(){
    
       
       <form id="formulario-sign-up">
-         <button type="button" id="google"><img src="imagenes/google.png"> </button>
+         
          <div id="Name" class="input">
          <input type="text" id="NameUser"  name="nombre" placeholder="User name" maxlength="10"   title="Maximo 16 caracteres" required >
          <img src="" id="CampoVacioName" class="error">
@@ -22,8 +22,8 @@ export function FormularioDeRegistro(){
          </div>
          
          <button type="submit" id="Register" class="btn" > REGISTER <a href="#Register"> </a> </button>
-   
-   </form>
+         <button type="button" id="google"><img src="imagenes/google.png"> </button>
+         </form>
    </div>`;
    
     return html;

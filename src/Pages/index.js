@@ -5,20 +5,23 @@ import {GuardarPost, leerPost} from '../../Firebase/firestore.js';
 /* *********************Crear cuenta********************* */
 export function RegistroUsuario(){
     const formularioSignUp = document.getElementById('formulario-sign-up');
-    formularioSignUp.addEventListener('submit', async(e)=>{
+    formularioSignUp.addEventListener('submit',(e)=>{
        e.preventDefault();
       // Obtener la info del usuario
       const name = document.getElementById('NameUser').value;
        const email = document.getElementById('EmailUser').value;
        const password = document.getElementById('PasswordUser').value;
-       try{
-        let result = await crearUsuario(name,email,password);
-      
-        console.log(result);
-       }catch(error){
+
+        crearUsuario(email,password)
+        .then((userCredential) => {
+          // Signed in
+          window.location.hash = '#/timeline';
+          var user = userCredential.user;
+          // ...
+        })
+        .catch((error)=>{
         modalErrorSignUp(error)
-       }   
-    
+       })   
     })
  }
  /* ********************login de usuario******************** */
@@ -52,9 +55,9 @@ export function Google(){
     try{
       let provider = new firebase.auth.GoogleAuthProvider();
       let result = await withGoogle(provider);
-      let credential = result.credential;
+      let token = result.credential.accessToken;
       let user = result.user;
-      console.log(user)
+      console.log(token)
       window.location.hash ='#/timeline';
     }catch(error){
       console.log(error)
@@ -109,12 +112,15 @@ close.addEventListener('click', () => {
 export function FormularioPublicacion() {
 	const botonAbrirModal = document.getElementById('abrir-modal');
 	const modalPublicacion = document.getElementById('post_modal');
-	const cerrarModal = document.getElementById('publicar-btn');
+	const publicado = document.getElementById('publicar-btn');
 	const cerrarSinPublicar = document.getElementById('cerrar');
 	botonAbrirModal.addEventListener('click', () => {
 		modalPublicacion.classList.add('show');
 	})
     cerrarSinPublicar.addEventListener('click', () => {
+		modalPublicacion.classList.remove('show');
+	})
+  publicado.addEventListener('click', () => {
 		modalPublicacion.classList.remove('show');
 	})
 
@@ -155,8 +161,8 @@ export function mostrarPost() {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
         PostContainer.innerHTML += `<div class="containerPost">
-          <h3>NombreUsuario</h3>
-          <i class="fas fa-map-marker-alt">${doc.data().lugar}</i>
+          <h3>${doc.data().user}</h3>
+          <i class="fas fa-map-marker-alt" id="lugar">${doc.data().lugar}</i>
           <img src="./imagenes/foto-prueba.jpg" width="100px"heigth="100px">
           <div class="icons-post">
           <i class="far fa-star"></i>
@@ -177,4 +183,10 @@ export function mostrarPost() {
           
     
 }
+export function ActualizarPost(){
+  const btnPublicar= document.getElementById('publicar-btn')
+       btnPublicar.addEventListener('click',leerPost)
+
+}
+
 

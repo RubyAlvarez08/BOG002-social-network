@@ -6,7 +6,7 @@ export function FormularioDeIngreso(){
       <div class='fondo contenedor'>
   
       <form id="Form-login"> 
-          <button type="button" id="google"><img src="imagenes/google.png"></button>
+          
         <div class="input" id="Email">
           <input type="email" name="correo" placeholder="email" required id="EmailUser"> 
           <img src="" id="CampoVacioEmail" class="error">

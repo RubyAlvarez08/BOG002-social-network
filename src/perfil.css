@@ -1,4 +1,5 @@
 /* Estilos del componente perfil.js con css grid*/
+@media screen and  (max-width: 720px){
 .container{
   display: grid;
   height: 100vh;
@@ -115,7 +116,7 @@ footer ul  :hover {
 }
 .btn-publicar{
   position: relative;
-  left: 40%;
+  left: 60%;
   top: 5px;
 }
 #cerrar{
@@ -178,4 +179,195 @@ i{
    height: 30px;
   
 }
- 
+}
+
+@media  (min-width: 720px){
+  .container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 1fr 3fr 0.3fr;
+    grid-gap:0.2rem;
+    grid-template-areas: 
+    "header header header"
+    "section section section"
+    "div div div"
+    "footer footer footer";
+  
+  }
+  header{
+    grid-area: header;
+    
+  }
+  header .menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 11px;
+  }
+  .logo{
+    font-family: Dancing Script;
+    font-size: 20px;
+  
+  }
+  header img{
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+  }
+  .enlaces{
+    background-color: #ffff;
+    height: 100px;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 40px;
+    right: 5px;
+         
+  }
+  
+  #configuracion:hover .enlaces{
+   display: block;
+  
+  }
+  .setting:hover{
+  background-color: #FFE8B4;
+  }
+  
+   .perfil{
+    position: relative;
+    top: 0px;
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+    align-content: baseline;
+    align-items: center;
+  }
+  
+  .descripcion{
+    color: black;
+    width: 90vw;
+    padding-top: 10px;
+    font-size: 18px;
+    position: relative;
+    top: 0px;
+    text-align: center;
+   }
+   div.all-post{
+     grid-area: div;
+     font-size: 12px;
+    color: black;
+     
+   }
+  footer{
+    height: 10vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
+    bottom: 0%;
+    padding: 0%;
+    margin: 0%;
+    background-color: transparent;
+    grid-area: footer;
+  }
+  footer ul{
+    display: inline-flex;
+    justify-content:space-between;
+    width: 100vw;
+    padding-left: 0%;
+    height: 100%;
+    background-color: #FFE8B4;
+    border-top: rgb(212, 212, 212) solid 1px;
+  }
+  footer ul li{
+    margin: 0%;
+    list-style: none;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  footer ul  :hover {
+    background-color: #FFD575;
+   }
+   #post{
+    width: 80vw;
+    height: 500px;
+    position: initial;
+  }
+  .btn-publicar{
+    position: relative;
+    left: 100%;
+    top: 5px;
+  }
+  #cerrar{
+    position: relative;
+    left: 110px;
+    top: -15px;
+  }
+  
+  .publicar{
+    
+    margin-top: 2em;
+    width: 75%;
+    max-height: auto;
+    font-family: poly;
+    border-radius: 10px;
+    border:rgb(187, 186, 186) solid 1px;
+    padding: 0.5em;
+    outline:none;
+    background-color: white;
+    overflow:visible;
+    flex-wrap: wrap;
+  
+  }
+  #publicar-btn{
+    position: relative;
+    top: 0%;
+    width: 25vw;
+    height: 5vh;
+    padding: 0.5em;
+    color: #fff;
+  } 
+  
+  /* Estilo de los post */
+  .containerPost{
+    display: grid;
+    padding-top: 20px;
+    border-bottom: solid gainsboro;
+    height: 40%;
+  }
+  .containerPost h3{
+    font-size: 20px;
+  }
+  .containerPost img {
+    width: 70vw;
+    height: 40vh;
+}
+.lugar{
+  left: 73%;
+  top: 30px;
+}
+  i{
+    font-size: 20px;
+  }
+  .icons-post{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    width: 70%;
+   }
+   .post-descripcion{
+    position: relative;
+    top: -300px;
+    left: 73%;
+    font-size: 20px;
+   }
+   .edit-delete{
+     display: flex;
+     justify-content: space-evenly;
+     height: 30px;
+    
+  }
+}
