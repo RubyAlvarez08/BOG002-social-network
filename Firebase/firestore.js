@@ -5,25 +5,36 @@ export const GuardarPost = (lugar,descripcion) =>  firebase.firestore().collecti
     lugar,
     descripcion,
     
-    })
+  })
     
 export const leerPost= () =>  firebase.firestore().collection("post").get();
 
+// borrar Post
+export const borrarPost = (id) => firebase.firestore().collection("post").doc(id).delete();
 
+// Obtener data del Post
+export const editPost = (id) => firebase.firestore().collection("post").doc(id).get();
 
- /* Cargando imagenes al storage */
- export const upload = async({file})=>{
-  let storageRef =  firebase.storage().ref().child(`images/${file.name}`);
- let uploadPost = await storageRef.put(file)
- 
+// Guardar cambios
+export const updateEdit = (id) => firebase.firestore().collection("post").doc(id).update(updateEdit);
 
-  return uploadPost;
-} 
+  /* Cargando imagenes al storage */
+/*  export const subirImagen = async({file})=>{
+  let storageRef =  firebase.storage().child(`images/${file}`);
+  console.log(storageRef);
+  let uploadPost = await storageRef.put(file)
 
-/* Database para almacenar las imagenes y posteriormente mostrarlas */
-/* const addDoc = async({colection,data})=>{
-   let document = {
-     ...data,
-     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-   }
+   return uploadPost;
+
+}  */ 
+/* export const mostrarImagen =()=>{
+  subirImagen.getDownloadURL()
+  .then(function(url) {
+    let img = document.getElementById('img-post');
+    img.src = url;
+   })
+   .catch(function(error) {
+  // Handle any errors
+   });
 } */
+

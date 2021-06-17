@@ -4,7 +4,7 @@ import { FormularioDeIngreso } from './Pages/Login.js';
 import { FormularioDeRegistro } from './Pages/SingUp.js';
 import {perfil} from './Pages/perfil.js'
 import { timeline } from './Pages/timeline.js';
-import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion, CrearPost, mostrarPost, ActualizarPost} from './Pages/index.js';
+import { RegistroUsuario, DatosDeLogin, Google, CerrarSesion,FormularioPublicacion, CrearPost, mostrarPost} from './Pages/index.js';
 import { UsuarioAutenticado} from '../Firebase/firebaseAuth.js'
 
  
@@ -30,7 +30,7 @@ export const  router = (route) => {
             content.innerHTML=
             FormularioDeIngreso();
             DatosDeLogin();
-            Google();
+            
         break;
         case '#/timeline':
         if(user){
@@ -39,7 +39,6 @@ export const  router = (route) => {
             FormularioPublicacion();
             CrearPost();
             mostrarPost();
-            ActualizarPost();
             CerrarSesion();
          }else{
             window.location.hash = '';
@@ -49,8 +48,9 @@ export const  router = (route) => {
               content.innerHTML =
                 perfil();
                 CrearPost();
-            mostrarPost();
-            ActualizarPost();
+                mostrarPost();
+            
+        
                
             
              

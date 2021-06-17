@@ -1,6 +1,9 @@
 import { CerrarLaSesion, crearUsuario, estadoDeAutenticacion, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
-import {GuardarPost, leerPost} from '../../Firebase/firestore.js';
+import {GuardarPost, leerPost,borrarPost, editPost, } from '../../Firebase/firestore.js';
 
+
+
+let user;
 
 /* *********************Crear cuenta********************* */
 export function RegistroUsuario(){
@@ -12,11 +15,11 @@ export function RegistroUsuario(){
        const email = document.getElementById('EmailUser').value;
        const password = document.getElementById('PasswordUser').value;
 
-        crearUsuario(email,password)
+        crearUsuario(name,email,password)
         .then((userCredential) => {
           // Signed in
           window.location.hash = '#/timeline';
-          var user = userCredential.user;
+          user = userCredential.user;
           // ...
         })
         .catch((error)=>{
@@ -37,7 +40,8 @@ export function RegistroUsuario(){
          Login(email,password)
          .then((userCredential) => {
             // Signed in
-            let user = userCredential.user;
+             user = userCredential.user;
+            console.log(user.email);
             window.location.hash = '#/timeline';
           
         })
@@ -136,20 +140,23 @@ export function CrearPost(){
     const fileInput = document.getElementById('my-file');
     const file = fileInput.files[0];
     const lugar = document.getElementById("lugar").value;
+    console.log(document.getElementById("lugar"));
     const descripcion = document.getElementById("descripcion").value;
-  
+    console.log(lugar,descripcion);
    try {
-   
-    await GuardarPost(lugar,descripcion);
-    
-   
-  }
-  catch(error) {
+       await GuardarPost(lugar,descripcion);
+             mostrarPost();
+             
+            
+   }
+   catch(error) {
     console.error("Error adding document: ", error);
-  }
+   }
     FormularioPost.reset();
  })
+ 
 }
+
 
 
  /* Traer toda la coleccion y pintarla en la aplicacion */
@@ -160,10 +167,11 @@ export function mostrarPost() {
     leerPost()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          
         PostContainer.innerHTML += `<div class="containerPost">
-          <h3>${doc.data().user}</h3>
-          <i class="fas fa-map-marker-alt" id="lugar">${doc.data().lugar}</i>
-          <img src="./imagenes/foto-prueba.jpg" width="100px"heigth="100px">
+      
+          <i class="fas fa-map-marker-alt">${doc.data().lugar}</i>
+          <img  id="img-post" src="">
           <div class="icons-post">
           <i class="far fa-star"></i>
           <i class="far fa-comment"></i>
@@ -174,19 +182,45 @@ export function mostrarPost() {
           <h4> ${doc.data().descripcion}</h4>
           </div>
           <div class="edit-delete">
-          <button><i class="fas fa-trash-alt"></i>Delete</button>
-          <button><i class="fas fa-edit"></i>Editar</button>
+          <button class="delete" data-id="${doc.id}"><i class="fas fa-trash-alt "></i>Delete</button>
+          <button class="edit" data-id="${doc.id}"><i class="fas fa-edit" ></i>Editar</button>
           </div>
          </div>`
         })
+        agregarListener();
       })
-          
+        
+            
+  
+}
+
+
+function agregarListener(){
+  //Borrar post
+  const BotonEliminar = document.querySelectorAll('.delete');
+  const BotonEditar  = document.querySelectorAll('.edit');
+  const modalPublicacion = document.getElementById('post_modal');
+
+  BotonEliminar.forEach(button =>{
+    button.addEventListener('click',async(e)=>{
+      console.log(e.target.dataset.id);
+      await borrarPost(e.target.dataset.id);
+     })
+  })
+  //Editar post
+  BotonEditar.forEach(button => {
+     button.addEventListener('click',async(e) => {
+      console.log(e.target.dataset.id);
+      modalPublicacion.classList.add('show');
+      await editPost(e.target.dataset.id).value;
+    })
+     
     
-}
-export function ActualizarPost(){
-  const btnPublicar= document.getElementById('publicar-btn')
-       btnPublicar.addEventListener('click',leerPost)
-
+     })
+  
 }
 
+  
 
+
+ 
