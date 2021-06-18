@@ -16,7 +16,7 @@ export const borrarPost = (id) => firebase.firestore().collection("post").doc(id
 export const editPost = (id) => firebase.firestore().collection("post").doc(id).get();
 
 // Guardar cambios
-export const updateEdit = (id) => firebase.firestore().collection("post").doc(id).update(updateEdit);
+export const updateEdit = (id,updateEdit) => firebase.firestore().collection("post").doc(id).update(updateEdit);
 
   /* Cargando imagenes al storage */
 /*  export const subirImagen = async({file})=>{

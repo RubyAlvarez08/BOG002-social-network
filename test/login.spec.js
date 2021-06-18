@@ -1,13 +1,23 @@
 // importamos el mock manual que creamos
 /* import MockFirebase from '../_mock_/firebase-mock.js'
 global.firebase = MockFirebase(); */
-import MockFirebase from 'mock-cloud-firestore';
+/* import MockFirebase from 'mock-cloud-firestore';
 
 const firebasemock = require('firebase-mock');
 const mockauth = new firebasemock.MockAuthentication();
 
-import { RegistroUsuario} from "../src/Pages/index.js";
+import { RegistroUsuario} from "../src/Pages/index.js"; */
+import {crearUsuario} from '../Firebase/firebaseAuth.js';
 
+describe ('crearUsuario',() => {
+  test ('deberia ser una function', () =>{
+    expect(typeof crearUsuario).toBe('function');
+
+  })
+})
+
+
+/* 
 describe('RegistroUsuario', () => {
     test('debería crear una cuenta con un correo y una contraseña', () => {
       const promesa = RegistroUsuario('nini@example.com','123456');
@@ -23,4 +33,4 @@ describe('RegistroUsuario', () => {
     });
     
 
-});
+}); */

@@ -1,5 +1,5 @@
 import { CerrarLaSesion, crearUsuario, estadoDeAutenticacion, Login,  withGoogle } from "../../Firebase/firebaseAuth.js";
-import {GuardarPost, leerPost,borrarPost, editPost, } from '../../Firebase/firestore.js';
+import {GuardarPost, leerPost,borrarPost, editPost, updateEdit } from '../../Firebase/firestore.js';
 
 
 
@@ -195,11 +195,12 @@ export function mostrarPost() {
 }
 
 
-function agregarListener(){
+function agregarListener() {
   //Borrar post
   const BotonEliminar = document.querySelectorAll('.delete');
   const BotonEditar  = document.querySelectorAll('.edit');
   const modalPublicacion = document.getElementById('post_modal');
+  const publicado = document.getElementById('publicar-btn');
 
   BotonEliminar.forEach(button =>{
     button.addEventListener('click',async(e)=>{
@@ -212,14 +213,28 @@ function agregarListener(){
      button.addEventListener('click',async(e) => {
       console.log(e.target.dataset.id);
       modalPublicacion.classList.add('show');
-      await editPost(e.target.dataset.id).value;
+     const doc = await editPost(e.target.dataset.id);
+        const datosDescripcion = doc.data().descripcion; 
+        const datosLugar = doc.data().lugar;
+
+        descripcion.value = datosDescripcion;
+        lugar.value = datosLugar;
+       let id = doc.id;
+
+       
+            
+      publicado.addEventListener('click', async() => {
+            await updateEdit(id, {
+              lugar: lugar.value,
+              descripcion: descripcion.value,
+                  })
     })
      
     
      })
   
+})
 }
-
   
 
 
