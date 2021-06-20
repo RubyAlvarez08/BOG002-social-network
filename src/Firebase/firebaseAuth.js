@@ -1,6 +1,6 @@
 
-export const crearUsuario = (name,email, password) => firebase.auth()
-.createUserWithEmailAndPassword(name,email, password)
+export const crearUsuario = (email, password) => firebase.auth()
+.createUserWithEmailAndPassword(email, password)
 
 export const Login = (email, password) => firebase.auth()
 .signInWithEmailAndPassword(email, password);

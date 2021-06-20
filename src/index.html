@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,64 +17,58 @@
 </head>
 
 <body>
-  
+   <!--Aqui se renderiza la aplicación-->
+  <main id="root"></main>
 
-<main id="root"></main>
-
-
-   <!--Ventana modal error signUp-->
-<section class="container_modal" id="container_modal">
-  <div class="modal">
-  
-    <p>Este correo ya se encuentra registrado</p>
-    <button type="button" id="btn_login" class="btn" value="login"> <a href="#/login">LOGIN</a></button>
-    <button type="button" class="btn" id="close"><a href="#/signUp">VOLVER</a></button>
-    
-  </div>
-
-</section>
-         <!--Ventana modal error login-->
-<section class="container_modal" id="login_modal">
-  <div class="modal">
-
-    <p> El correo no se encuentra registrado</p>
-    <button type="button" id="btn_signUp" class="btn" value="signUp"> <a href="#/signUp">REGISTER</a></button>
-    <button type="button" id="close-login" class="btn" value="login"> <a href="#/login">VOLVER</a></button>
-  </div>
-
-</section>
-
-<!-- PopUp publicacion -->
-<section class="container_modal" id="post_modal">
-  <div class="modal">
-    <form id= 'post'>
-      <p id="cerrar">X</p>
-      <input type="file" id="my-file" name='file'></input>
-      <input type="text" class="input" id="lugar" placeholder="lugar" required></input>
-      <textarea type="text" class="publicar" id="descripcion" placeholder="descripcion" required></textarea>
-      <button type="submit" class="btn" id="publicar-btn"> Publicar </button>     
-	    </form>
+  <!--Ventana modal error signUp-->
+  <section class="container_modal" id="container_modal">
+    <div class="modal">
+      <p>Este correo ya se encuentra registrado</p>
+      <button type="button" id="btn_login" class="btn" value="login"> <a href="#/login">LOGIN</a></button>
+      <button type="button" class="btn" id="close"><a href="#/signUp">VOLVER</a></button>
     </div>
-   </section>
+  </section>
+  <!--Ventana modal error login-->
+  <section class="container_modal" id="login_modal">
+    <div class="modal">
+      <p> El correo no se encuentra registrado</p>
+      <button type="button" id="btn_signUp" class="btn" value="signUp"> <a href="#/signUp">REGISTER</a></button>
+      <button type="button" id="close-login" class="btn" value="login"> <a href="#/login">VOLVER</a></button>
+    </div>
+ </section>
+
+  <!-- PopUp publicacion -->
+  <section class="container_modal" id="post_modal">
+    <div class="modal">
+      <form id='post'>
+        <p id="cerrar">X</p>
+        <input type="file" id="my-file" name='file'></input>
+        <input type="text" class="input" id="lugar" placeholder="lugar" required></input>
+        <textarea type="text" class="publicar" id="descripcion" placeholder="descripcion" required></textarea>
+        <button type="submit" class="btn" id="publicar-btn"> Publicar </button>
+      </form>
+    </div>
+  </section>
 
 
 
 
 
-<!-- Archivos para la navegacion -->
+  <!-- Archivos para la navegacion -->
   <script type="module" src="main.js"></script>
- 
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
 
 
 
 
 
 </body>
+
 </html>
