@@ -1,5 +1,8 @@
 import { UsuarioAutenticado } from '../Firebase/firebaseAuth.js';
 import { pages } from '../vistas.js';
+import { RegistroUsuario, Google } from '../2.SingUp/Dom-singup.js';
+import { DatosDeLogin } from '../3.Login/Dom-login.js';
+import { FormularioPublicacion, CrearPost, mostrarPost } from '../4.Publicaciones/Dom-publicaciones.js';
 
 export const router = (route) => {
     let content = document.getElementById('root');
@@ -21,11 +24,16 @@ export const router = (route) => {
   
         break;
       case '#/timeline':
-          content.innerHTML =
+        if(user) {
+            content.innerHTML =
             pages.timeline();
-            FormularioPublicacion()
-        
-        
+           FormularioPublicacion();
+           CrearPost();
+           mostrarPost()
+         
+        }else {
+            window.location.hash = '';
+        }
           break;
       default:
         console.log('error')

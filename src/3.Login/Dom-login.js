@@ -12,20 +12,12 @@ export function DatosDeLogin() {
 
         //conectando firebase
         Login(email, password)
-            .then((userCredential) => {
-                // Signed in
-                user = userCredential.user;
-                window.location.hash = '#/timeline';
-
-            })
-            .catch((error) => {
-                modalErrorLogin(error);
-            });
+            
     })
 }
 
 /* *******POPUP  Error Loguin ********* */
-function modalErrorLogin(error) {
+export function modalErrorLogin(error) {
 
     const login_modal = document.getElementById('login_modal');
     const close = document.getElementById('close-login');

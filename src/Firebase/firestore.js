@@ -1,13 +1,18 @@
 
 
 
-export const GuardarPost = (lugar,descripcion) =>  firebase.firestore().collection("post").add({
-    lugar,
-    descripcion,
-    
-  })
-    
-export const leerPost= () =>  firebase.firestore().collection("post").get();
+export const GuardarPost = (lugar, descripcion) => firebase.firestore().collection("post").add({
+  lugar,
+  descripcion
+})
+.then((docRef) => {
+  console.log("Document written with ID: ", docRef.id);
+})
+.catch((error) => {
+  console.error("Error adding document: ", error);
+});
+
+export const getPost = () => firebase.firestore().collection("post").get();
 
 // borrar Post
 export const borrarPost = (id) => firebase.firestore().collection("post").doc(id).delete();
@@ -16,19 +21,15 @@ export const borrarPost = (id) => firebase.firestore().collection("post").doc(id
 export const editPost = (id) => firebase.firestore().collection("post").doc(id).get();
 
 // Guardar cambios
-export const updateEdit = (id,updateEdit) => firebase.firestore().collection("post").doc(id).update(updateEdit);
+export const updateEdit = (id, updateEdit) => firebase.firestore().collection("post").doc(id).update(updateEdit);
 
-  /* Cargando imagenes al storage */
-/*  export const subirImagen = async({file})=>{
-  let storageRef =  firebase.storage().child(`images/${file}`);
+/* Cargando imagenes al storage */
+  export const subirImagen = (file)=>{
+  let storageRef =  firebase.storage().ref(`images/${file.name}`);
   console.log(storageRef);
-  let uploadPost = await storageRef.put(file)
+  let uploadPost = storageRef.put(file)
 
-   return uploadPost;
-
-}  */ 
-/* export const mostrarImagen =()=>{
-  subirImagen.getDownloadURL()
+  uploadPost.getDownloadURL()
   .then(function(url) {
     let img = document.getElementById('img-post');
     img.src = url;
@@ -36,5 +37,8 @@ export const updateEdit = (id,updateEdit) => firebase.firestore().collection("po
    .catch(function(error) {
   // Handle any errors
    });
-} */
+
+}
+
+
 

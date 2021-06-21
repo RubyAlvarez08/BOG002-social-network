@@ -17,7 +17,6 @@
   firebase.initializeApp(firebaseConfig);
   firebase.auth();
   firebase.firestore();
-  
   firebase.storage();
   
  }

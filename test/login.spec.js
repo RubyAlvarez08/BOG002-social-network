@@ -1,4 +1,4 @@
-import { crearUsuario,Login } from '../Firebase/firebaseAuth.js';
+import { crearUsuario, Login, withGoogle } from '../src/Firebase/firebaseAuth.js';
 
 const firebasemock = require('firebase-mock');
 const mockauth = new firebasemock.MockAuthentication();
@@ -22,6 +22,7 @@ describe('crearUsuario', () => {
     const promesa = crearUsuario('email@test.com','123456')
     return promesa
     .then((user) =>{
+      console.log(user.email)
       expect(user.email).toBe('email@test.com');
       expect(typeof user).toBe('object');
     })
@@ -36,8 +37,22 @@ describe('Login', () => {
     const promesa = Login('nini@test.com', '123456');
     return promesa
     .then((user) =>{
+      console.log(user.email)
       expect(user.email).toBe('nini@test.com');
       expect(typeof user).toBe('object');
+    })
+  })
+})
+
+describe('withGoogle', () => {
+  test('deberia ser una function', () => {
+    expect(typeof withGoogle).toBe('function');
+  }),
+  test('deberia registrarme mediante el proveedor de Google', () => {
+    const promesa = withGoogle('provider')
+    return promesa
+    .then((result) =>{
+      expect(typeof result).toBe('object');
     })
   })
 })

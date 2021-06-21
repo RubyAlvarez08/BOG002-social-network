@@ -1,5 +1,6 @@
 /* import { GuardarPost, leerPost, borrarPost, editPost, updateEdit } from '../Firebase/firestore.js'; */
 import { CerrarLaSesion } from '../Firebase/firebaseAuth.js';
+import { GuardarPost, getPost, borrarPost, editPost, updateEdit } from '../Firebase/firestore.js';
 
 
 /* se abre el POPUp que publicar */
@@ -19,23 +20,21 @@ export function FormularioPublicacion() {
         modalPublicacion.classList.remove('show');
     })
 }
-/* Crear publicaciones */
+/* Crear publicaciones en firestore */
 
 export function CrearPost() {
+
     const FormularioPost = document.getElementById('post');
     FormularioPost.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const fileInput = document.getElementById('my-file');
-        const file = fileInput.files[0];
+        /*   const fileInput = document.getElementById('my-file');
+          const file = fileInput.files[0]; */
         const lugar = document.getElementById("lugar").value;
-        console.log(document.getElementById("lugar"));
         const descripcion = document.getElementById("descripcion").value;
         console.log(lugar, descripcion);
         try {
             await GuardarPost(lugar, descripcion);
-            mostrarPost();
-
 
         }
         catch (error) {
@@ -50,10 +49,10 @@ export function CrearPost() {
 
 /* Traer toda la coleccion y pintarla en la aplicacion */
 
- function mostrarPost() {
+export function mostrarPost() {
     const PostContainer = document.getElementById('post-container')
 
-    leerPost()
+    getPost()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
 
@@ -98,6 +97,8 @@ function agregarListener() {
         })
     })
     //Editar post
+    let editPostStatus = false;
+
     BotonEditar.forEach(button => {
         button.addEventListener('click', async (e) => {
             console.log(e.target.dataset.id);
@@ -105,19 +106,21 @@ function agregarListener() {
             const doc = await editPost(e.target.dataset.id);
             const datosDescripcion = doc.data().descripcion;
             const datosLugar = doc.data().lugar;
+            publicado.innerText = 'Actualizar';
 
             descripcion.value = datosDescripcion;
             lugar.value = datosLugar;
+
             let id = doc.id;
-
-
-
             publicado.addEventListener('click', async () => {
                 await updateEdit(id, {
                     lugar: lugar.value,
                     descripcion: descripcion.value,
                 })
             })
+
+
+
 
 
         })

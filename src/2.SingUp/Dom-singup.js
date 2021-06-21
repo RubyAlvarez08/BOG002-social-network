@@ -1,6 +1,6 @@
 
 import { crearUsuario, withGoogle } from "../Firebase/firebaseAuth.js";
-let user;
+
 
 
 /* *********************Registrar usuario con email y password********************* */
@@ -9,22 +9,13 @@ export function RegistroUsuario() {
    const formularioSignUp = document.getElementById('formulario-sign-up');
    formularioSignUp.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('NameUser').value;
-      const email = document.getElementById('EmailUser').value;
+      const nombre = document.getElementById('NameUser').value;
+      const correo = document.getElementById('EmailUser').value;
       const password = document.getElementById('PasswordUser').value;  
+   
+      crearUsuario(correo, password)
       
-      crearUsuario(email, password)
-         .then((userCredential) => {
-            // Signed in
-            window.location.hash = '#/timeline';
-            user = userCredential.user;
-            // ...
-         })
-         .catch((error) => {
-            modalErrorSignUp(error)
-         })
-
-   })
+    })
 }
 
 /* ********************Registrar con Google***************** */
@@ -34,6 +25,8 @@ export function Google() {
       try {
          let provider = new firebase.auth.GoogleAuthProvider();
          let result = await withGoogle(provider);
+         let token = result.credential;
+         console.log(token)
          window.location.hash = '#/timeline';
       } catch (error) {
          console.log(error)
@@ -43,7 +36,7 @@ export function Google() {
 }
 
 /* *******POPUP  Error Registro ********* */
-function modalErrorSignUp(error) {
+export function modalErrorSignUp(error) {
    const container_modal = document.getElementById('container_modal');
    const close = document.getElementById('close');
 
@@ -56,8 +49,8 @@ function modalErrorSignUp(error) {
    });
 }
 
-/* export function DatosDeRegistro(){
-const formulario = document.getElementById('formulario');
+ /* function DatosDeRegistro(){
+const formulario = document.getElementById('formulario-sign-up');
 const inputs = document.querySelectorAll('.input');
 
 const expresiones = {
