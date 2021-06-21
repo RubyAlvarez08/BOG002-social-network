@@ -19,6 +19,7 @@ Se trata de una maravillosa forma para potenciar las economías locales y apoyar
 
  Familias y/o amigos que deseen compartir momentos alrededor de la comida y los lugares.
 
- <img src="../imagenes/1.jpg" width="500" height="800">
- <img src="../imagenes/2.jpg" width="500" height="800">
+![]
+(https://github.com/RubyAlvarez08/BOG002-social-network/blob/main/src/imagenes/1.jpg)
+(https://github.com/RubyAlvarez08/BOG002-social-network/blob/main/src/imagenes/2.jpg)
  
