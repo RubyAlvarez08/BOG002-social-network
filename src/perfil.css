@@ -158,7 +158,7 @@ footer ul  :hover {
 }
 .containerPost img {
  width: 100vw;
- height: 40vh;
+ height: 30vh;
 }
 i{
   font-size: 20px;
@@ -370,4 +370,9 @@ i{
      height: 30px;
     
   }
+  #contador{
+    position: relative;
+    right: 70px;
+}
+  
 }

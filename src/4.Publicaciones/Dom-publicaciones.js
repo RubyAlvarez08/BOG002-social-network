@@ -1,6 +1,6 @@
 /* import { GuardarPost, leerPost, borrarPost, editPost, updateEdit } from '../Firebase/firestore.js'; */
 import { CerrarLaSesion } from '../Firebase/firebaseAuth.js';
-import { GuardarPost, getPost, borrarPost, editPost, updateEdit } from '../Firebase/firestore.js';
+import { GuardarPost, getPost, borrarPost, editPost, updateEdit, subirImagen } from '../Firebase/firestore.js';
 
 
 /* se abre el POPUp que publicar */
@@ -28,14 +28,14 @@ export function CrearPost() {
     FormularioPost.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        /*   const fileInput = document.getElementById('my-file');
-          const file = fileInput.files[0]; */
+          const fileInput = document.getElementById('my-file');
+          const file = fileInput.files[0];
         const lugar = document.getElementById("lugar").value;
         const descripcion = document.getElementById("descripcion").value;
         console.log(lugar, descripcion);
         try {
             await GuardarPost(lugar, descripcion);
-
+                    subirImagen(file)
         }
         catch (error) {
             console.error("Error adding document: ", error);
@@ -59,9 +59,10 @@ export function mostrarPost() {
                 PostContainer.innerHTML += `<div class="containerPost">
         
             <i class="fas fa-map-marker-alt">${doc.data().lugar}</i>
-            <img  id="img-post" src="">
+            <img  id="img-post" src="./imagenes/foto-prueba.jpg">
             <div class="icons-post">
             <i class="far fa-star"></i>
+            <h4 id='contador'>1</h4>
             <i class="far fa-comment"></i>
             <i class="far fa-envelope"></i>
             </div>
@@ -118,13 +119,7 @@ function agregarListener() {
                     descripcion: descripcion.value,
                 })
             })
-
-
-
-
-
         })
-
     })
 }
 

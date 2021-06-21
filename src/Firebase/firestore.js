@@ -29,16 +29,25 @@ export const updateEdit = (id, updateEdit) => firebase.firestore().collection("p
   console.log(storageRef);
   let uploadPost = storageRef.put(file)
 
-  uploadPost.getDownloadURL()
+  return uploadPost;
+
+ /*  uploadPost.getDownloadURL()
   .then(function(url) {
     let img = document.getElementById('img-post');
     img.src = url;
    })
    .catch(function(error) {
   // Handle any errors
-   });
+   }); */
 
 }
+
+/* Conteo de likes */
+var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
+starCountRef.on('value', (snapshot) => {
+  const data = snapshot.val();
+  updateStarCount(postElement, data);
+});
 
 
 
