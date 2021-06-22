@@ -11,7 +11,8 @@ export const GuardarPost = (lugar, descripcion) => firebase.firestore().collecti
 /* traer los datos de la publicacion y mostrarla en la web */
 export const getPost = () => firebase.firestore().collection("post").get();
   
-  
+// funcion que actualiza cada vez que existen cambios
+export const onGetPost = (callback) => firebase.firestore().collection('post').onSnapshot(callback)
 
 
 // borrar Post

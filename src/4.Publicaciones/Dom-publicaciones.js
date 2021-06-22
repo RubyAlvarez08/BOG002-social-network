@@ -1,5 +1,5 @@
 import { CerrarLaSesion, UsuarioAutenticado } from '../Firebase/firebaseAuth.js';
-import { GuardarPost, getPost, borrarPost, editPost, updateEdit } from '../Firebase/firestore.js';
+import { GuardarPost, borrarPost, editPost, updateEdit, onGetPost } from '../Firebase/firestore.js';
 
 
 /* se abre el POPUp que publicar */
@@ -44,10 +44,9 @@ export function CrearPost() {
 
         FormularioPost.reset();
     })
-
-
-    getPost()
-        .then((querySnapshot) => {
+       
+    onGetPost((querySnapshot) => {
+            PostContainer.innerHTML = '';
             querySnapshot.forEach((doc) => {
 
                 PostContainer.innerHTML += `<div class="containerPost">
