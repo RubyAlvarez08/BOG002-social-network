@@ -2,11 +2,12 @@ import { UsuarioAutenticado } from '../Firebase/firebaseAuth.js';
 import { pages } from '../vistas.js';
 import { RegistroUsuario, Google } from '../2.SingUp/Dom-singup.js';
 import { DatosDeLogin } from '../3.Login/Dom-login.js';
-import { FormularioPublicacion, CrearPost, mostrarPost } from '../4.Publicaciones/Dom-publicaciones.js';
+import { FormularioPublicacion, CrearPost } from '../4.Publicaciones/Dom-publicaciones.js';
+
 
 export const router = (route) => {
     let content = document.getElementById('root');
-    let user = UsuarioAutenticado();
+    let user = firebase.auth().currentUser;
     switch (route) {
       case '':
         content.innerHTML = pages.home()
@@ -29,7 +30,6 @@ export const router = (route) => {
             pages.timeline();
            FormularioPublicacion();
            CrearPost();
-           mostrarPost()
          
         }else {
             window.location.hash = '';

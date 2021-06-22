@@ -1,15 +1,19 @@
 import { modalErrorSignUp } from '../2.SingUp/Dom-singup.js';
 import { modalErrorLogin } from '../3.Login/Dom-login.js';
 
-let user;
+
 
 /* Registro de usuario en la app */
-export const crearUsuario = (email, password) => firebase.auth()
+export const crearUsuario = (email, password, name) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
-  .then((user) => {
+  .then((result) => {
     // Signed in
     window.location.hash = '#/timeline';
-    console.log(user);
+    
+    const datosUsuario = result.user.updateProfile({ displayName: name });
+    
+    return datosUsuario
+
 
   })
   .catch((error) => {
@@ -18,11 +22,10 @@ export const crearUsuario = (email, password) => firebase.auth()
 
 export const Login = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
+  .then((result) => {
     // Signed in
-    user = userCredential.user;
     window.location.hash = '#/timeline';
-
+    return result
   })
   .catch((error) => {
     modalErrorLogin(error);

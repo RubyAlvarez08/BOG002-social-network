@@ -9,11 +9,11 @@ export function RegistroUsuario() {
    const formularioSignUp = document.getElementById('formulario-sign-up');
    formularioSignUp.addEventListener('submit', (e) => {
       e.preventDefault();
-      const nombre = document.getElementById('NameUser').value;
-      const correo = document.getElementById('EmailUser').value;
+      const name= document.getElementById('NameUser').value;
+      const email = document.getElementById('EmailUser').value;
       const password = document.getElementById('PasswordUser').value;  
    
-      crearUsuario(correo, password)
+      crearUsuario(email, password,name)
       
     })
 }

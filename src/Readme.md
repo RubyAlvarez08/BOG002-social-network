@@ -23,3 +23,5 @@ Se trata de una maravillosa forma para potenciar las economías locales y apoyar
 (https://github.com/RubyAlvarez08/BOG002-social-network/blob/main/src/imagenes/1.jpg)
 (https://github.com/RubyAlvarez08/BOG002-social-network/blob/main/src/imagenes/2.jpg)
  
+
+ ## PROTOTIPO DE ALTA FIDELIDAD

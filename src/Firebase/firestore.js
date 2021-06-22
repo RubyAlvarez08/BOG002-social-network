@@ -1,18 +1,18 @@
 
 
-
-export const GuardarPost = (lugar, descripcion) => firebase.firestore().collection("post").add({
-  lugar,
-  descripcion
-})
+ /* se crea la publicacion en en la collection */
+export const GuardarPost = (lugar, descripcion) => firebase.firestore().collection("post").add({lugar,descripcion})
 .then((docRef) => {
   console.log("Document written with ID: ", docRef.id);
 })
 .catch((error) => {
   console.error("Error adding document: ", error);
 });
-
+/* traer los datos de la publicacion y mostrarla en la web */
 export const getPost = () => firebase.firestore().collection("post").get();
+  
+  
+
 
 // borrar Post
 export const borrarPost = (id) => firebase.firestore().collection("post").doc(id).delete();
@@ -43,11 +43,11 @@ export const updateEdit = (id, updateEdit) => firebase.firestore().collection("p
 }
 
 /* Conteo de likes */
-var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
+/* var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
 starCountRef.on('value', (snapshot) => {
   const data = snapshot.val();
   updateStarCount(postElement, data);
-});
+}); */
 
 
 
